@@ -17,6 +17,7 @@ PAUSE redefines the service called throughout the "PAUSE" command on Microsoft W
 #### https
 ```https
 git clone https://github.com:Frzifus/PAUSE.git
+```
 
 **2. Navigate to the repo and execute**
 ```bash
