@@ -19,8 +19,14 @@ PAUSE redefines the service called throughout the "PAUSE" command on Microsoft W
 ```https
 git clone https://github.com:Frzifus/PAUSE.git
 ```
-**2. Navigate to the repo and hit**
+**2. Navigate to the repo and execute**
 ```bash
 make -j4
 make install
+```
+
+### Uninstall
+**1. Navigate to the repo and execute**
+```bash
+make uninstall
 ```
