@@ -6,7 +6,7 @@ Our purpose in creating this software was to bring one of Microsoft Windows most
 ### Description
 -------
 PAUSE redefines the service called throughout the "PAUSE" command on Microsoft Windows host systems. The basic tasks are:
-* the OS locates the PAUSE daemon
+* the OS locates the PAUSE program
 * allocate the memory to execute the command
 * execute the command and wait for a keystroke
 * deallocate the memory
