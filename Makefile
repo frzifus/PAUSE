@@ -52,6 +52,9 @@ distclean:
 
 install:
 	cp ./build/bin/PAUSE /usr/bin/PAUSE
+
+uninstall:
+	rm -rf /usr/bin/PAUSE
 run:
 	@echo Run executable
 	./$(EXECUTABLE)
