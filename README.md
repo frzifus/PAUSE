@@ -12,21 +12,22 @@ PAUSE redefines the service called throughout the "PAUSE" command on Microsoft W
 * deallocate the memory
 * exit the OS and resume the program
 
-### Installation
------
+### Build
 **1. Get the repository**
 #### https
 ```https
 git clone https://github.com:Frzifus/PAUSE.git
-```
+
 **2. Navigate to the repo and execute**
 ```bash
 make -j4
-make install
 ```
 
-### Uninstall
-**1. Navigate to the repo and execute**
+### Install and uninstall
+-----
+**Execute as privileged user**
 ```bash
+make install
+#or
 make uninstall
 ```
