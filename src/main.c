@@ -16,8 +16,17 @@
 #include <stdio.h>      /* printf */
 #include <locale.h>     /* setlocale */
 #include <string.h>     /* strcmp */
+#include <termios.h>
 
 int main() {
+  struct termios info;
+  tcgetattr(0, &info);
+  info.c_lflag &= ~ICANON;
+  info.c_cc[VMIN] = 1;
+  info.c_cc[VTIME] = 0;
+  tcsetattr(0, TCSANOW, &info); 
+
+
   const char DE[] = "de_DE.utf8";
   char *locale = setlocale(LC_ALL, "");
 
