@@ -13,28 +13,35 @@
  * see <http://www.gnu.org/licenses/>.
  **/
 
-#include <stdio.h>      /* printf */
-#include <locale.h>     /* setlocale */
-#include <string.h>     /* strcmp */
+#include <locale.h> /* setlocale */
+#include <stdio.h>  /* printf */
+#include <string.h> /* strcmp */
+#ifdef __unix__
 #include <termios.h>
+void one_char_buffer_ioctl() {
+    struct termios info;
+    tcgetattr(0, &info);
+    info.c_lflag &= ~ICANON;
+    info.c_cc[VMIN] = 1;
+    info.c_cc[VTIME] = 0;
+    tcsetattr(0, TCSANOW, &info);
+}
+#else
+void one_char_buffer_ioctl() { /* not unix, so no action needed here */
+}
+#endif  // __unix__
 
 int main() {
-  struct termios info;
-  tcgetattr(0, &info);
-  info.c_lflag &= ~ICANON;
-  info.c_cc[VMIN] = 1;
-  info.c_cc[VTIME] = 0;
-  tcsetattr(0, TCSANOW, &info); 
+    one_char_buffer_ioctl();
 
+    const char DE[] = "de_DE.utf8";
+    char *locale = setlocale(LC_ALL, "");
 
-  const char DE[] = "de_DE.utf8";
-  char *locale = setlocale(LC_ALL, "");
-
-  if (strcmp(locale, DE)) {
-    printf("Drücken Sie eine beliebige Taste . . . ");
-  } else {
-    printf("Press any key to continue . . . ");
-  }
-  getchar();
-  return 0;
+    if (strcmp(locale, DE)) {
+        printf("Dr\u00FCcken Sie eine beliebige Taste . . . ");
+    } else {
+        printf("Press any key to continue . . . ");
+    }
+    getchar();
+    return 0;
 }
